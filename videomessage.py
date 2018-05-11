@@ -4,6 +4,7 @@ import re
 import time
 import json
 import pymysql
+import bili_script
 
 
 
@@ -159,7 +160,7 @@ def all():
 
 		end_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
-
+		bili_script.videomes_log(start_time,end_time,low,high)
 
 		print("刚刚执行的起始和终止aid号码是"+str(low),str(high))
 		print('开始时间:'+start_time)
