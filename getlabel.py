@@ -29,7 +29,7 @@ def getLabel(text):
 	re_uploader_no='#whisper/mid(.*?)" target="_blank"'
 	re_video_name='&quot;title&quot;:&quot;(.*?)&quot;,&quot;images&quot;:'
 
-
+	#匹配标签信息，然后加入结果列表中
 	label=re.compile(re_label).findall(text)
 	result.append("".join(label[-1]))
 
@@ -44,17 +44,19 @@ def getLabel(text):
 
 	result[3]=result[3].replace("'", "`")
 
+	#用于测试的print语句
 	#print(i,label[-1])
 	#print(i,uptime)
 	#print(i,uploader_no)
 	#print(i,result)
+	#将结果列表作为返回值返回
 	return result
 
 
 
 
 def insert(label_message,dbno):
-
+	#用来将信息存入数据库的函数
 	db = pymysql.connect(host="localhost",user="root", password="123456ls",db="bili", port=3306,charset='utf8')
 	cursor = db.cursor()
 
@@ -85,7 +87,7 @@ def insert(label_message,dbno):
 
 
 def get_aid(i):
-
+	#通过数据库内编号dbno从之前的videomes数据库中查询视频aid
 	db = pymysql.connect(host="localhost",user="root", password="123456ls",db="bili", port=3306,charset='utf8')
 	cursor = db.cursor()
 
@@ -106,11 +108,12 @@ def get_aid(i):
 
 
 def log(dbno):
+	#写日志文件的函数
 	#获得问题文件aid
 	aid=get_aid(dbno)
 
 	#拼接出应该写入的日志文件名
-	log_name='D:\codes/bilibili\log\label-log-'+time.strftime("%Y-%m-%d", time.localtime())+'.txt'
+	log_name='D:/codes/bilibili/log/label-log-'+time.strftime("%Y-%m-%d", time.localtime())+'.txt'
 	#打开文件，写入错误视频的dbno和aid以及此时时间，之后将文件关闭
 	f = open(log_name, 'a')
 	f.write(str(dbno)+' '+str(aid)+' '+time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+'\n')
