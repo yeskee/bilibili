@@ -20,7 +20,7 @@ def getHTMLText(url):
 
 
 def inserter(x):
-
+	#将数据插入数据库的函数
 
 	db = pymysql.connect(host="localhost",user="root", password="123456ls",db="bili", port=3306,charset='utf8')
 	cursor = db.cursor()
