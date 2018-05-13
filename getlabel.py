@@ -20,7 +20,10 @@ def getHTMLText(url):
 def getLabel(text):
 
 	result=list()
+	#定义结果列表
+	
 
+	#定义匹配视频标签、上传时间、上传者编号、视频名称的正则表达式
 	re_label='<a href="//www.bilibili.com/v/(.*?)/">'
 	re_uptime='<time>(.*?)</time>'
 	re_uploader_no='#whisper/mid(.*?)" target="_blank"'
