@@ -1,4 +1,6 @@
 import time
+#库函数文件
+
 
 def TTS(x):
 	#name of the function means Time to Stamp
