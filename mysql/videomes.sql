@@ -28,7 +28,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- dbno连接在一起是没有任何意义的
 -- 相比disappear这个表多了一个view，就是视频播放量
 -- videomes和disappear一样是数据插入本数据库的时间
--- 如果要用下面的sql语句建表记得把自增主键的23万改成0
+-- 如果要用下面的sql语句建表记得把自增主键的32万改成0
 
 CREATE TABLE IF NOT EXISTS `videomes` (
   `dbno` int(11) NOT NULL auto_increment,
