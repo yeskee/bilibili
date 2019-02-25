@@ -20,7 +20,7 @@ def getHTMLText(url):
 
 
 def inserter(x):
-	#将数据插入数据库的函数
+	#将数据插入数据库的函数，这里插入的是videomes表，视频存在，视频信息也存在
 
 	db = pymysql.connect(host="localhost",user="root", password="123456ls",db="bili", port=3306,charset='utf8')
 	cursor = db.cursor()
@@ -40,18 +40,18 @@ def inserter(x):
 		#print('videomes成功提交')
 	except Exception as e:  
 		db.rollback()
-		print('catch异常')
+		print('catch异常')    #检测数据插入数据库是否产生异常
 	finally:
 		db.close()
 		#print('连接关闭')
 
 
 def insert_dis(x):
-
+        #这里插入的是视频信息仍然存在，但是视频不存在的视频信息，插入到disappear表中	
 
 	db = pymysql.connect(host="localhost",user="root", password="123456ls",db="bili", port=3306,charset='utf8')
 	cursor = db.cursor()
-
+      
 	x[0]=int(x[0])
 	x[2]=int(x[2])
 	x[3]=int(x[3])
@@ -82,7 +82,7 @@ def insert_dis(x):
 		#print('连接关闭')
 
 
-def getMassage(url):
+def getMassage(url):    #爬取信息的函数
 	try:
 		result = list()
 
@@ -95,7 +95,7 @@ def getMassage(url):
 		flag = 1
 
 		for i in list1:
-			#利用列表进行字符串数组的拼接,然后进行匹配
+			#利用列表进行字符串数组的拼接正则表达式,然后进行匹配
 			temp_result = re.compile(i+'":(.*?),').findall(str(html))
 			#print(temp_result)
 			if temp_result == []:
@@ -116,7 +116,7 @@ def getMassage(url):
 			else:
 				insert_dis(result)
 	except:
-		log(result[0])
+		log(result[0])    #将发生的错误写入日志中
 
 
 
@@ -172,8 +172,9 @@ def all():
 		print('\n\n')
 		print("刚刚执行的起始和终止aid号码是 "+str(low)+' 和 '+str(high))
 		print('\n\n')
-		flag = input('继续运行输入1，终止输入0： ')
-
+		flag = input('继续运行输入1，终止输入0： ')    #这部分比较啰嗦，实际是为了减慢操作速度，防止输入范围时出错
+		
+		
 
 		flag = int(flag)
 
