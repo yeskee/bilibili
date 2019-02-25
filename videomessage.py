@@ -183,12 +183,5 @@ def all():
 	pass
 
 
-'''
-if __name__=="__main__":
 
-	for i in range(187111,190000):
-		url = "https://api.bilibili.com/x/web-interface/archive/stat?aid="+str(i)
-		getMassage(url)
 
-'''
-#17700000
